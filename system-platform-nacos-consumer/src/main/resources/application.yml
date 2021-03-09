@@ -1,0 +1,46 @@
+dubbo:
+    registry:
+        address: nacos://127.0.0.1:8848
+    application:
+        id: ${spring.application.name}
+        name: ${spring.application.name}
+        qos-enable: false
+    cloud:
+        subscribed-services: ${spring.application.name}
+    protocol:
+        id: dubbo
+        name: dubbo
+        port: 20882
+    scan:
+        base-packages: kuroneko.fun.system.platform.nacos.consumer
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        jmx:
+            exposure:
+                include: '*'
+        web:
+            exposure:
+                include: '*'
+server:
+    port: 8085
+spring:
+    application:
+        name: system-platform-nacos-consumer
+#    cloud:
+#        nacos:
+#            discovery:
+#                namespace: public
+#                password: nacos
+#                server-addr: 127.0.0.1:8848
+#                username: nacos
+    boot:
+        admin:
+            client:
+                url: "http://localhost:8083"
+    security:
+        user:
+            name: admin
+            password: admin

@@ -1,0 +1,30 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: system-platform-backup
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8083"
+  security:
+    user:
+      name: admin
+      password: admin
+kuroneko:
+  backup:
+    datasource:
+      host: localhost
+      userName: root
+      password: root
+      database: kuroneko
+      docker: true
+      dockerName: mysql8
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
