@@ -1,0 +1,31 @@
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        jmx:
+            exposure:
+                include: '*'
+        web:
+            exposure:
+                include: '*'
+server:
+    port: 8086
+spring:
+    application:
+        name: system-platform-consul-producer-one
+    cloud:
+        consul:
+            config:
+                enabled: true
+            host: loclahost
+            port: 8500
+            discovery:
+                service-name: ${spring.application.name}
+    boot:
+        admin:
+            client:
+                url: "http://localhost:8083"
+feign:
+    hystrix:
+        enabled: true
