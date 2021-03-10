@@ -22,8 +22,10 @@
     <module>../system-platform-backup</module>
 <!--    consul-->
     <module>../system-platform-consul-monitor</module>
+    <module>../system-platform-conusl-consumer</module>
     <module>../system-platform-consul-producer-one</module>
     <module>../system-platform-consul-producer-two</module>
+    <module>../system-platform-hystrix</module>
     <!--    nacos-->
     <module>../system-platform-monitor</module>
     <module>../system-platform-nacos-consumer</module>
