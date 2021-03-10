@@ -33,3 +33,13 @@ build/
 /system-platform-conusl-consumer/.mvn/
 /system-platform-hystrix/.mvn/
 /system-platform-zuul/.mvn/
+/system-platform-pom/.mvn/
+/system-platform-nacos-producer-two/.mvn/
+/system-platform-nacos-producer-one/.mvn/
+/system-platform-nacos-consumer/.mvn/
+/system-platform-monitor/.mvn/
+/system-platform-admin/.mvn/
+/system-platform-backup/.mvn/
+/system-platform-common/.mvn/
+/system-platform-conusl-consumer/.mvn/
+/system-platform-core/.mvn/
