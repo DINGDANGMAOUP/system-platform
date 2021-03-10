@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
   @Resource
   HelloService helloService;
-  @RequestMapping("/hello2")
-  public String hello2(){
+  @RequestMapping("/hello")
+  public String hello(){
     return helloService.hello2();
   }
 }

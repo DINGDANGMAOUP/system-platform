@@ -26,6 +26,7 @@
     <module>../system-platform-consul-producer-one</module>
     <module>../system-platform-consul-producer-two</module>
     <module>../system-platform-hystrix</module>
+    <module>../system-platform-zuul</module>
     <!--    nacos-->
     <module>../system-platform-monitor</module>
     <module>../system-platform-nacos-consumer</module>

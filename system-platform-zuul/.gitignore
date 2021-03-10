@@ -29,7 +29,4 @@ build/
 
 ### VS Code ###
 .vscode/
-/logs/
-/system-platform-conusl-consumer/.mvn/
-/system-platform-hystrix/.mvn/
-/system-platform-zuul/.mvn/
+/.mvn/

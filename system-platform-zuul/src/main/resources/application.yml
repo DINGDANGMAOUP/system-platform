@@ -10,10 +10,10 @@ management:
             exposure:
                 include: '*'
 server:
-    port: 8086
+    port: 8089
 spring:
     application:
-        name: system-platform-consul-producer
+        name: system-platform-zuul
     cloud:
         consul:
             config:
@@ -22,10 +22,18 @@ spring:
             port: 8500
             discovery:
                 service-name: ${spring.application.name}
-    boot:
-        admin:
-            client:
-                url: "http://localhost:8083"
-feign:
-    hystrix:
-        enabled: true
+#    boot:
+#        admin:
+#            client:
+#                url: "http://localhost:8083"
+#feign:
+#    hystrix:
+#        enabled: true
+zuul:
+    routes:
+        producer:
+            path: /producer/**
+            serviceId: system-platform-consul-producer
+        consumer:
+            path: /consumer/**
+            serviceId: system-platform-conusl-consumer
