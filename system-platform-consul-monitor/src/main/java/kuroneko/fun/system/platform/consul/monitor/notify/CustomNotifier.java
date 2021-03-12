@@ -35,7 +35,7 @@ public class CustomNotifier extends AbstractEventNotifier {
             String instanceName = instance.getRegistration().getName();
             //实例id
             InstanceId instanceId = event.getInstance();
-            //状态
+            //实例状态
             String instanceStatus = ((InstanceStatusChangedEvent) event).getStatusInfo().getStatus();
             switch (instanceStatus) {
                 // 健康检查没通过
