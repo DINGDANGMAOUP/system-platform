@@ -1,39 +1,39 @@
 management:
-    endpoint:
-        health:
-            show-details: always
-    endpoints:
-        jmx:
-            exposure:
-                include: '*'
-        web:
-            exposure:
-                include: '*'
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+    web:
+      exposure:
+        include: '*'
 server:
-    port: 8089
+  port: 8089
 spring:
-    application:
-        name: system-platform-zuul
-    cloud:
-        consul:
-            config:
-                enabled: true
-            host: loclahost
-            port: 8500
-            discovery:
-                service-name: ${spring.application.name}
-#    boot:
-#        admin:
-#            client:
-#                url: "http://localhost:8083"
+  application:
+    name: system-platform-zuul
+  cloud:
+    consul:
+      config:
+        enabled: true
+      host: loclahost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+    boot:
+        admin:
+            client:
+                url: "http://localhost:8083"
 #feign:
 #    hystrix:
 #        enabled: true
 zuul:
-    routes:
-        producer:
-            path: /producer/**
-            serviceId: system-platform-consul-producer
-        consumer:
-            path: /consumer/**
-            serviceId: system-platform-conusl-consumer
+  routes:
+    producer:
+      path: /producer/**
+      serviceId: system-platform-consul-producer
+    consumer:
+      path: /consumer/**
+      serviceId: system-platform-conusl-consumer
