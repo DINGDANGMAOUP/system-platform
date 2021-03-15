@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
+ * SPA会从注册中心拉去实例列表监控，client无需在手动注册至 SAP server
  * @author kuroneko
  */
 @SpringBootApplication
