@@ -15,14 +15,14 @@ server:
 spring:
     application:
         name: system-platform-conusl-consumer
-    cloud:
-        consul:
-            config:
-                enabled: true
-            host: loclahost
-            port: 8500
-            discovery:
-                service-name: ${spring.application.name}
+#    cloud:
+#        consul:
+#            config:
+#                enabled: true
+#            host: loclahost
+#            port: 8500
+#            discovery:
+#                service-name: ${spring.application.name}
     zipkin:
         base-url: http://117.24.14.69:9411/
         sender:
