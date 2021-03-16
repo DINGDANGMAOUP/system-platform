@@ -26,6 +26,7 @@ spring:
         admin:
             discovery:
                 ignored-services: consul
+
     security:
         user:
             name: admin
