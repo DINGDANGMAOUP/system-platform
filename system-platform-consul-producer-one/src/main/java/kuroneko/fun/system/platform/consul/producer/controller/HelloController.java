@@ -1,7 +1,7 @@
-package kuroneko.fun.system.platform.conusl.producer.controller;
+package kuroneko.fun.system.platform.consul.producer.controller;
 
 import javax.annotation.Resource;
-import kuroneko.fun.system.platform.conusl.producer.service.HelloService;
+import kuroneko.fun.system.platform.consul.producer.service.HelloService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

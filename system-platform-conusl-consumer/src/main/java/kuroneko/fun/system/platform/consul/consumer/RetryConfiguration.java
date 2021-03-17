@@ -5,13 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.retry.interceptor.RetryInterceptorBuilder;
 import org.springframework.retry.interceptor.RetryOperationsInterceptor;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public class RetryConfiguration {
-	@Bean
-	@ConditionalOnMissingBean(name = "configServerRetryInterceptor")
-	public RetryOperationsInterceptor configServerRetryInterceptor() {
-		return RetryInterceptorBuilder.stateless().backOffOptions(1000, 1.2, 5000).maxAttempts(10).build();
-	}
+  @Bean
+  @ConditionalOnMissingBean(name = "configServerRetryInterceptor")
+  public RetryOperationsInterceptor configServerRetryInterceptor() {
+    return RetryInterceptorBuilder.stateless()
+        .backOffOptions(1000, 1.2, 5000)
+        .maxAttempts(10)
+        .build();
+  }
 }

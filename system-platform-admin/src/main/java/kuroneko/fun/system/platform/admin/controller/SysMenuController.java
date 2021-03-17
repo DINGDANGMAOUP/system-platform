@@ -1,6 +1,5 @@
 package kuroneko.fun.system.platform.admin.controller;
 
-
 import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysMenu;
 import kuroneko.fun.system.platform.admin.sevice.SysMenuService;
@@ -14,37 +13,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * 菜单控制器
- */
+/** 菜单控制器 */
 @RestController
 @RequestMapping("menu")
 public class SysMenuController {
 
-	@Autowired
-	private SysMenuService sysMenuService;
-	
-	@PreAuthorize("hasAuthority('sys:menu:add') AND hasAuthority('sys:menu:edit')")
-	@PostMapping(value="/save")
-	public HttpResult save(@RequestBody SysMenu record) {
-		return HttpResult.ok(sysMenuService.save(record));
-	}
+  @Autowired private SysMenuService sysMenuService;
 
-	@PreAuthorize("hasAuthority('sys:menu:delete')")
-	@PostMapping(value="/delete")
-	public HttpResult delete(@RequestBody List<SysMenu> records) {
-		return HttpResult.ok(sysMenuService.delete(records));
-	}
+  @PreAuthorize("hasAuthority('sys:menu:add') AND hasAuthority('sys:menu:edit')")
+  @PostMapping(value = "/save")
+  public HttpResult save(@RequestBody SysMenu record) {
+    return HttpResult.ok(sysMenuService.save(record));
+  }
 
-	@PreAuthorize("hasAuthority('sys:menu:view')")
-	@GetMapping(value="/findNavTree")
-	public HttpResult findNavTree(@RequestParam String userName) {
-		return HttpResult.ok(sysMenuService.findTree(userName, 1));
-	}
-	
-	@PreAuthorize("hasAuthority('sys:menu:view')")
-	@GetMapping(value="/findMenuTree")
-	public HttpResult findMenuTree() {
-		return HttpResult.ok(sysMenuService.findTree(null, 0));
-	}
+  @PreAuthorize("hasAuthority('sys:menu:delete')")
+  @PostMapping(value = "/delete")
+  public HttpResult delete(@RequestBody List<SysMenu> records) {
+    return HttpResult.ok(sysMenuService.delete(records));
+  }
+
+  @PreAuthorize("hasAuthority('sys:menu:view')")
+  @GetMapping(value = "/findNavTree")
+  public HttpResult findNavTree(@RequestParam String userName) {
+    return HttpResult.ok(sysMenuService.findTree(userName, 1));
+  }
+
+  @PreAuthorize("hasAuthority('sys:menu:view')")
+  @GetMapping(value = "/findMenuTree")
+  public HttpResult findMenuTree() {
+    return HttpResult.ok(sysMenuService.findTree(null, 0));
+  }
 }

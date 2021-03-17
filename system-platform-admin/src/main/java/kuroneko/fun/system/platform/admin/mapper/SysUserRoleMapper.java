@@ -4,23 +4,21 @@ import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysUserRole;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public interface SysUserRoleMapper {
-    int deleteByPrimaryKey(Long id);
+  int deleteByPrimaryKey(Long id);
 
-    int insert(SysUserRole record);
+  int insert(SysUserRole record);
 
-    int insertSelective(SysUserRole record);
+  int insertSelective(SysUserRole record);
 
-    SysUserRole selectByPrimaryKey(Long id);
+  SysUserRole selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(SysUserRole record);
+  int updateByPrimaryKeySelective(SysUserRole record);
 
-    int updateByPrimaryKey(SysUserRole record);
+  int updateByPrimaryKey(SysUserRole record);
 
-	List<SysUserRole> findUserRoles(@Param(value="userId") Long userId);
+  List<SysUserRole> findUserRoles(@Param(value = "userId") Long userId);
 
-	int deleteByUserId(@Param(value="userId") Long userId);
+  int deleteByUserId(@Param(value = "userId") Long userId);
 }

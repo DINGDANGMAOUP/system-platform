@@ -1,146 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>kuroneko.fun</groupId>
-    <artifactId>system-platform-backup</artifactId>
-    <version>1.0.0</version>
-    <name>system-platform-backup</name>
-    <description>系统备份</description>
-    <parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>system-platform-backup</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>kuroneko.fun.system.platform.backup.SystemPlatformBackupApplication</mainClass>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+            <id>repackage</id>
+          </execution>
+        </executions>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.7.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <swagger.version>3.0.0</swagger.version>
-        <docker.image.prefix>system-platform-backup</docker.image.prefix>
-    </properties>
+      </plugin>
 
+      <!-- Docker maven plugin -->
+      <plugin>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <dockerDirectory>src/main/docker</dockerDirectory>
+          <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+          <resources>
+            <resource>
+              <directory>${project.build.directory}</directory>
+              <include>${project.build.finalName}.jar</include>
+              <targetPath>/</targetPath>
+            </resource>
+          </resources>
+        </configuration>
+        <groupId>com.spotify</groupId>
+        <version>1.0.0</version>
+      </plugin>
+      <!-- Docker maven plugin -->
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>spring-boot-starter</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-devtools</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <optional>true</optional>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- spring-cloud-config -->
+    <dependency>
+      <artifactId>spring-cloud-starter-config</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--    consul-->
+    <dependency>
+      <artifactId>spring-cloud-starter-consul-config</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--openFeign-->
+    <dependency>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--admin-->
+    <dependency>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <!--    zipkin-->
+    <dependency>
+      <artifactId>spring-cloud-starter-zipkin</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--    bus-->
+    <dependency>
+      <artifactId>spring-cloud-bus</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--        bus  amqp-->
+    <dependency>
+      <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <!--hystrix-->
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+          <groupId>org.springframework.cloud</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+
+
+    <!--    swagger3-->
+    <dependency>
+      <artifactId>springfox-boot-starter</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>${swagger.version}</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>junit-vintage-engine</artifactId>
+          <groupId>org.junit.vintage</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>2.3.7.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-<!--admin client-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <!--    swagger3-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+      <dependency>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-boot.version}</version>
+      </dependency>
     </dependencies>
+  </dependencyManagement>
+  <description>系统备份</description>
+  <groupId>kuroneko.fun</groupId>
+  <!--    <parent>-->
+  <!--        <groupId>org.springframework.boot</groupId>-->
+  <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+  <!--        <version>2.3.7.RELEASE</version>-->
+  <!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+  <!--    </parent>-->
+  <modelVersion>4.0.0</modelVersion>
 
-    <!--srping cloud-->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <name>system-platform-backup</name>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>kuroneko.fun.system.platform.backup.SystemPlatformBackupApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+  <!--srping cloud-->
+  <properties>
+    <docker.image.prefix>system-platform-backup</docker.image.prefix>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+    <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+    <swagger.version>3.0.0</swagger.version>
+  </properties>
 
-            <!-- Docker maven plugin -->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-            <!-- Docker maven plugin -->
-        </plugins>
-    </build>
+  <version>1.0.0</version>
 
 </project>

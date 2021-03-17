@@ -9,20 +9,21 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@EnableDiscoveryClient
-@EnableFeignClients
+@EnableDiscoveryClient // 开启服务发现与消费
+@EnableFeignClients // 开启openFeign
 public class SystemPlatformConuslConsumerApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SystemPlatformConuslConsumerApplication.class, args);
-    }
-    @Bean
-    public ServletRegistrationBean getServlet() {
-        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-        registrationBean.setLoadOnStartup(1);
-        registrationBean.addUrlMappings("/hystrix.stream");
-        registrationBean.setName("HystrixMetricsStreamServlet");
-        return registrationBean;
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(SystemPlatformConuslConsumerApplication.class, args);
+  }
+
+  @Bean
+  public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+  }
 }

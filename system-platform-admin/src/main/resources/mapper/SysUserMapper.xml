@@ -1,46 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kuroneko.fun.system.platform.admin.mapper.SysUserMapper">
-  <resultMap id="BaseResultMap" type="kuroneko.fun.system.platform.admin.model.SysUser">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="salt" jdbcType="VARCHAR" property="salt" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="dept_id" jdbcType="BIGINT" property="deptId" />
-    <result column="create_by" jdbcType="BIGINT" property="createBy" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
-    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, password, salt, email, mobile, status, dept_id, create_by, create_time, 
-    last_update_by, last_update_time, del_flag
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sys_user
+    delete
+    from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="kuroneko.fun.system.platform.admin.model.SysUser">
-    insert into sys_user (id, name, password, 
-      salt, email, mobile, 
-      status, dept_id, create_by, 
-      create_time, last_update_by, last_update_time, 
-      del_flag)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{salt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{deptId,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{delFlag,jdbcType=TINYINT})
+    insert into sys_user (id, name, password,
+                          salt, email, mobile,
+                          status, dept_id, create_by,
+                          create_time, last_update_by, last_update_time,
+                          del_flag)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+            #{salt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+            #{status,jdbcType=TINYINT}, #{deptId,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT},
+            #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=BIGINT},
+            #{lastUpdateTime,jdbcType=TIMESTAMP},
+            #{delFlag,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="kuroneko.fun.system.platform.admin.model.SysUser">
     insert into sys_user
@@ -127,7 +105,55 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="kuroneko.fun.system.platform.admin.model.SysUser">
+  <resultMap id="BaseResultMap" type="kuroneko.fun.system.platform.admin.model.SysUser">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="salt" jdbcType="VARCHAR" property="salt"/>
+    <result column="email" jdbcType="VARCHAR" property="email"/>
+    <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+    <result column="status" jdbcType="TINYINT" property="status"/>
+    <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+    <result column="create_by" jdbcType="BIGINT" property="createBy"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy"/>
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag"/>
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName
+    from sys_user u
+  </select>
+  <select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName
+    from sys_user u
+    where u.name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'"/>
+    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName from sys_user u
+    where u.name like #{pattern}
+  </select>
+  <select id="findPageByNameAndEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="patternName" value="'%' + _parameter.name + '%'"/>
+    <bind name="patternEmail" value="'%' + _parameter.email + '%'"/>
+    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName from sys_user u
+    where u.name like #{patternName}
+    and u.email like #{patternEmail}
+  </select>
+  <sql id="Base_Column_List">
+    id
+    , name, password, salt, email, mobile, status, dept_id, create_by, create_time,
+    last_update_by, last_update_time, del_flag
+  </sql>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="kuroneko.fun.system.platform.admin.model.SysUser">
     update sys_user
     <set>
       <if test="name != null">
@@ -171,37 +197,18 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="kuroneko.fun.system.platform.admin.model.SysUser">
     update sys_user
-    set name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      salt = #{salt,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      dept_id = #{deptId,jdbcType=BIGINT},
-      create_by = #{createBy,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=TINYINT}
+    set name             = #{name,jdbcType=VARCHAR},
+        password         = #{password,jdbcType=VARCHAR},
+        salt             = #{salt,jdbcType=VARCHAR},
+        email            = #{email,jdbcType=VARCHAR},
+        mobile           = #{mobile,jdbcType=VARCHAR},
+        status           = #{status,jdbcType=TINYINT},
+        dept_id          = #{deptId,jdbcType=BIGINT},
+        create_by        = #{createBy,jdbcType=BIGINT},
+        create_time      = #{createTime,jdbcType=TIMESTAMP},
+        last_update_by   = #{lastUpdateBy,jdbcType=BIGINT},
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        del_flag         = #{delFlag,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="findPage" resultMap="BaseResultMap">
-    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName from sys_user u
-  </select>
-  <select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName from sys_user u
-    where u.name = #{name,jdbcType=VARCHAR}
-  </select>
-  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
-    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName from sys_user u
-    where u.name like #{pattern}
-  </select>
-  <select id="findPageByNameAndEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="patternName" value="'%' + _parameter.name + '%'" />
-  	<bind name="patternEmail" value="'%' + _parameter.email + '%'" />
-    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) deptName from sys_user u
-    where u.name like #{patternName}
-    and u.email like #{patternEmail}
-  </select>
 </mapper>

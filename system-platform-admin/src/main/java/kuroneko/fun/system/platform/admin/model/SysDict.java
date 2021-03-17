@@ -2,26 +2,21 @@ package kuroneko.fun.system.platform.admin.model;
 
 import lombok.Data;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 @Data
 public class SysDict extends BaseModel {
 
-    private String value;
+  private String value;
 
-    private String label;
+  private String label;
 
-    private String type;
+  private String type;
 
-    private String description;
+  private String description;
 
-    private Long sort;
+  private Long sort;
 
-    private String remarks;
+  private String remarks;
 
-    private Byte delFlag;
-
-
-
+  private Byte delFlag;
 }

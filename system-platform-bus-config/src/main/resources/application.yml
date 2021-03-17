@@ -1,44 +1,44 @@
 management:
-    endpoint:
-        health:
-            show-details: always
-    endpoints:
-        jmx:
-            exposure:
-                include: '*'
-        web:
-            exposure:
-                include: '*'
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+    web:
+      exposure:
+        include: '*'
 spring:
-    application:
-        name: system-platform-bus-config
-    cloud:
-        consul:
-            config:
-                enabled: true
-            host: loclahost
-            port: 8500
-            discovery:
-                service-name: ${spring.application.name}
-        config:
-            label: master  # git仓库分支
-            server:
-                git:
-                    uri: https://gitee.com/BigKuroneko/config-repo.git  # 配置git仓库的地址
-                    search-paths: config-repo  # git仓库地址下的相对地址，可以配置多个，用,分割。
-    zipkin:
-        base-url: http://117.24.14.69:9411/
-        sender:
-            type: rabbit
-        rabbitmq:
-            addresses: 117.24.14.69:5672
-    sleuth:
-        sampler:
-            probability: 1
+  application:
+    name: system-platform-bus-config
+  cloud:
+    consul:
+      config:
+        enabled: true
+      host: loclahost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+    config:
+      label: master  # git仓库分支
+      server:
+        git:
+          uri: https://gitee.com/BigKuroneko/config-repo.git  # 配置git仓库的地址
+          search-paths: config-repo  # git仓库地址下的相对地址，可以配置多个，用,分割。
+  zipkin:
+    base-url: http://117.24.14.69:9411/
+    sender:
+      type: rabbit
     rabbitmq:
-        host: 117.24.14.69
-        port: 5672
-        username: guest
-        password: guest
+      addresses: 117.24.14.69:5672
+  sleuth:
+    sampler:
+      probability: 1
+  rabbitmq:
+    host: 117.24.14.69
+    port: 5672
+    username: guest
+    password: guest
 server:
-    port: 8090
+  port: 8090

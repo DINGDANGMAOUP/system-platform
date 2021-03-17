@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>kuroneko.fun</groupId>
-    <artifactId>system-platform-core</artifactId>
-    <version>1.0.0</version>
-    <name>system-platform-core</name>
-    <description>核心代码模块</description>
-    <packaging>jar</packaging>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.7.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <pagehelper.spring.version>1.2.5</pagehelper.spring.version>
-    </properties>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>system-platform-core</artifactId>
+  <dependencies>
+    <!-- kitty-pagehelper -->
+    <dependency>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <groupId>com.github.pagehelper</groupId>
+      <version>${pagehelper.spring.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <artifactId>system-platform-common</artifactId>
+      <groupId>kuroneko.fun</groupId>
+      <version>1.0.0</version>
+    </dependency>
+  </dependencies>
+  <description>核心代码模块</description>
+  <groupId>kuroneko.fun</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <name>system-platform-core</name>
+  <packaging>jar</packaging>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>2.3.7.RELEASE</version> <!-- lookup parent from repository -->
+  </parent>
+  <properties>
+    <java.version>1.8</java.version>
+    <pagehelper.spring.version>1.2.5</pagehelper.spring.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+  </properties>
 
-    <dependencies>
-        <!-- kitty-pagehelper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper.spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-      <dependency>
-        <groupId>kuroneko.fun</groupId>
-        <artifactId>system-platform-common</artifactId>
-        <version>1.0.0</version>
-      </dependency>
-    </dependencies>
-
-
+  <version>1.0.0</version>
 
 
 </project>

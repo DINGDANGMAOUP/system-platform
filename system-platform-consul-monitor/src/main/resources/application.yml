@@ -1,33 +1,33 @@
 management:
-    endpoint:
-        health:
-            show-details: always
-    endpoints:
-        jmx:
-            exposure:
-                include: '*'
-        web:
-            exposure:
-                include: '*'
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+    web:
+      exposure:
+        include: '*'
 server:
-    port: 8083
+  port: 8083
 spring:
-    application:
-        name: system-platform-monitor
-    cloud:
-        consul:
-            config:
-                enabled: true
-            host: loclahost
-            port: 8500
-            discovery:
-                service-name: ${spring.application.name}
-    boot:
-        admin:
-            discovery:
-                ignored-services: consul
+  application:
+    name: system-platform-monitor
+  cloud:
+    consul:
+      config:
+        enabled: true
+      host: loclahost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+  boot:
+    admin:
+      discovery:
+        ignored-services: consul
+  security:
+    user:
+      name: admin
+      password: admin
 
-    security:
-        user:
-            name: admin
-            password: admin

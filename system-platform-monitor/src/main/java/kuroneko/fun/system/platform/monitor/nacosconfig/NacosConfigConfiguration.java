@@ -19,10 +19,7 @@ package kuroneko.fun.system.platform.monitor.nacosconfig;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 @EnableAutoConfiguration
 @Configuration
-public class NacosConfigConfiguration {
-}
+public class NacosConfigConfiguration {}

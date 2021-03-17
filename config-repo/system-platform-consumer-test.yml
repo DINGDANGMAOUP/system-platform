@@ -1,2 +1,2 @@
 consumer:
-    hello: 'hello, this is test configurations. '
+  hello: 'hello, this is test configurations. '

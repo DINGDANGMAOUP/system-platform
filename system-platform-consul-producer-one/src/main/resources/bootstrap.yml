@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    consul:
+      config:
+        enabled: true
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: system-platform-consul-producer    # 注册到consul的服务名称
+    config:
+      discovery:
+        enabled: true  # 开启服务发现
+        serviceId: system-platform-bus-config # 配置中心服务名称
+      name: system-platform-consul-producer  # 对应{application}部分
+      profile: dev  # 对应{profile}部分
+      label: master  # 对应git的分支，如果配置中心使用的是本地存储，则该参数无用

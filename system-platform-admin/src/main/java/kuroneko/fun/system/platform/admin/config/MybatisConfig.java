@@ -11,23 +11,23 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 /**
  * Mybatis配置
+ *
  * @author kuroneko
  */
 @Configuration
-@MapperScan("kuroneko.fun.system.platform.*.mapper")	// 扫描DAO
+@MapperScan("kuroneko.fun.system.platform.*.mapper") // 扫描DAO
 public class MybatisConfig {
-  @Autowired
-  private DataSource dataSource;
+  @Autowired private DataSource dataSource;
 
   @Bean
   public SqlSessionFactory sqlSessionFactory() throws Exception {
     SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
     sessionFactory.setDataSource(dataSource);
-    sessionFactory.setTypeAliasesPackage("kuroneko.fun.system.platform.*.model");	// 扫描Model
-    
-	PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-	sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/**.xml"));	// 扫描映射文件
-	
+    sessionFactory.setTypeAliasesPackage("kuroneko.fun.system.platform.*.model"); // 扫描Model
+
+    PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+    sessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/**.xml")); // 扫描映射文件
+
     return sessionFactory.getObject();
   }
 }

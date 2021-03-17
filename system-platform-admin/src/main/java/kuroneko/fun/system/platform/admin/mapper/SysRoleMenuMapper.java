@@ -4,25 +4,23 @@ import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysRoleMenu;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public interface SysRoleMenuMapper {
-    int deleteByPrimaryKey(Long id);
+  int deleteByPrimaryKey(Long id);
 
-    int insert(SysRoleMenu record);
+  int insert(SysRoleMenu record);
 
-    int insertSelective(SysRoleMenu record);
+  int insertSelective(SysRoleMenu record);
 
-    SysRoleMenu selectByPrimaryKey(Long id);
+  SysRoleMenu selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(SysRoleMenu record);
+  int updateByPrimaryKeySelective(SysRoleMenu record);
 
-    int updateByPrimaryKey(SysRoleMenu record);
+  int updateByPrimaryKey(SysRoleMenu record);
 
-	List<SysRoleMenu> findRoleMenus(@Param(value="roleId") Long roleId);
-	
-	List<SysRoleMenu> findAll();
+  List<SysRoleMenu> findRoleMenus(@Param(value = "roleId") Long roleId);
 
-	int deleteByRoleId(@Param(value="roleId") Long roleId);
+  List<SysRoleMenu> findAll();
+
+  int deleteByRoleId(@Param(value = "roleId") Long roleId);
 }

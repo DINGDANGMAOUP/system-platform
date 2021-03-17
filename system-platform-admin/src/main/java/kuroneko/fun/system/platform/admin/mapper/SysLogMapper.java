@@ -4,23 +4,21 @@ import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysLog;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public interface SysLogMapper {
-    int deleteByPrimaryKey(Long id);
+  int deleteByPrimaryKey(Long id);
 
-    int insert(SysLog record);
+  int insert(SysLog record);
 
-    int insertSelective(SysLog record);
+  int insertSelective(SysLog record);
 
-    SysLog selectByPrimaryKey(Long id);
+  SysLog selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(SysLog record);
+  int updateByPrimaryKeySelective(SysLog record);
 
-    int updateByPrimaryKey(SysLog record);
-    
-    List<SysLog> findPage();
-    
-    List<SysLog> findPageByUserName(@Param(value="userName") String userName);
+  int updateByPrimaryKey(SysLog record);
+
+  List<SysLog> findPage();
+
+  List<SysLog> findPageByUserName(@Param(value = "userName") String userName);
 }

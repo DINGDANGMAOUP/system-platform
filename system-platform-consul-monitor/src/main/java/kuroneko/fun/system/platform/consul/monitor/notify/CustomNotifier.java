@@ -10,7 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-/** @author kuroneko */
+/**
+ * 自定义服务状态通知类
+ *
+ * @author kuroneko
+ */
 @Slf4j
 @Service
 public class CustomNotifier extends AbstractEventNotifier {
@@ -31,31 +35,32 @@ public class CustomNotifier extends AbstractEventNotifier {
                 event.getInstance(),
                 ((InstanceStatusChangedEvent) event).getStatusInfo().getStatus());
 
-            //实例名
+            // 实例名
             String instanceName = instance.getRegistration().getName();
-            //实例id
+            // 实例id
             InstanceId instanceId = event.getInstance();
-            //实例状态
-            String instanceStatus = ((InstanceStatusChangedEvent) event).getStatusInfo().getStatus();
+            // 实例状态
+            String instanceStatus =
+                ((InstanceStatusChangedEvent) event).getStatusInfo().getStatus();
             switch (instanceStatus) {
                 // 健康检查没通过
               case "DOWN":
-                log.info("{}健康检查未通过 ",instanceName);
+                log.info("{}健康检查未通过 ", instanceName);
 
                 break;
                 // 服务离线
               case "OFFLINE":
-                log.info("{}服务离线",instanceName);
+                log.info("{}服务离线", instanceName);
 
                 break;
                 // 服务上线
               case "UP":
-                log.info("{}服务上线",instanceName);
+                log.info("{}服务上线", instanceName);
 
                 break;
                 // 服务未知异常
               case "UNKNOWN":
-                log.info("{}服务未知异常",instanceName);
+                log.info("{}服务未知异常", instanceName);
 
                 break;
               default:

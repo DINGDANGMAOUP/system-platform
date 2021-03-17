@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
 
   @RequestMapping("/")
-  public String health(){
+  public String health() {
     return "health";
   }
 }

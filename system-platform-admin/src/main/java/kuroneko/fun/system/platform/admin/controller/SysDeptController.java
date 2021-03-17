@@ -1,6 +1,5 @@
 package kuroneko.fun.system.platform.admin.controller;
 
-
 import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysDept;
 import kuroneko.fun.system.platform.admin.sevice.SysDeptService;
@@ -13,32 +12,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * 机构控制器
- */
+/** 机构控制器 */
 @RestController
 @RequestMapping("dept")
 public class SysDeptController {
 
-	@Autowired
-	private SysDeptService sysDeptService;
-	
-	@PreAuthorize("hasAuthority('sys:dept:add') AND hasAuthority('sys:dept:edit')")
-	@PostMapping(value="/save")
-	public HttpResult save(@RequestBody SysDept record) {
-		return HttpResult.ok(sysDeptService.save(record));
-	}
+  @Autowired private SysDeptService sysDeptService;
 
-	@PreAuthorize("hasAuthority('sys:dept:delete')")
-	@PostMapping(value="/delete")
-	public HttpResult delete(@RequestBody List<SysDept> records) {
-		return HttpResult.ok(sysDeptService.delete(records));
-	}
+  @PreAuthorize("hasAuthority('sys:dept:add') AND hasAuthority('sys:dept:edit')")
+  @PostMapping(value = "/save")
+  public HttpResult save(@RequestBody SysDept record) {
+    return HttpResult.ok(sysDeptService.save(record));
+  }
 
-	@PreAuthorize("hasAuthority('sys:dept:view')")
-	@GetMapping(value="/findTree")
-	public HttpResult findTree() {
-		return HttpResult.ok(sysDeptService.findTree());
-	}
+  @PreAuthorize("hasAuthority('sys:dept:delete')")
+  @PostMapping(value = "/delete")
+  public HttpResult delete(@RequestBody List<SysDept> records) {
+    return HttpResult.ok(sysDeptService.delete(records));
+  }
 
+  @PreAuthorize("hasAuthority('sys:dept:view')")
+  @GetMapping(value = "/findTree")
+  public HttpResult findTree() {
+    return HttpResult.ok(sysDeptService.findTree());
+  }
 }

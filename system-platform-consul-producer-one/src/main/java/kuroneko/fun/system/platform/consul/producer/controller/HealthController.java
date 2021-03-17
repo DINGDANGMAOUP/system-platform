@@ -1,4 +1,4 @@
-package kuroneko.fun.system.platform.conusl.producer.controller;
+package kuroneko.fun.system.platform.consul.producer.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

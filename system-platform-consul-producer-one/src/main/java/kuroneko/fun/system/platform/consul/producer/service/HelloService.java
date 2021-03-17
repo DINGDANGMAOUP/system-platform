@@ -1,4 +1,4 @@
-package kuroneko.fun.system.platform.conusl.producer.service;
+package kuroneko.fun.system.platform.consul.producer.service;
 
 /**
  * @author kuroneko

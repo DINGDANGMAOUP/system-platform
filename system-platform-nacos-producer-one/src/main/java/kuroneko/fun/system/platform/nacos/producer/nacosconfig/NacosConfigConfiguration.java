@@ -1,4 +1,4 @@
-///*
+/// *
 // * Licensed to the Apache Software Foundation (ASF) under one or more
 // * contributor license agreements.  See the NOTICE file distributed with
 // * this work for additional information regarding copyright ownership.
@@ -14,16 +14,16 @@
 // * See the License for the specific language governing permissions and
 // * limitations under the License.
 // */
-//package kuroneko.fun.system.platform.nacos.producer.nacosconfig;
+// package kuroneko.fun.system.platform.nacos.producer.nacosconfig;
 //
-//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-//import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-//import org.springframework.context.annotation.Configuration;
+// import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+// import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+// import org.springframework.context.annotation.Configuration;
 //
-///**
+/// **
 // * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
 // */
-//@EnableAutoConfiguration
-//@Configuration
-//public class NacosConfigConfiguration {
-//}
+// @EnableAutoConfiguration
+// @Configuration
+// public class NacosConfigConfiguration {
+// }

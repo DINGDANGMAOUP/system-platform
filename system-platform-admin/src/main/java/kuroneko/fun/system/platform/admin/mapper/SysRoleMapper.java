@@ -4,27 +4,25 @@ import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysRole;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public interface SysRoleMapper {
-    int deleteByPrimaryKey(Long id);
+  int deleteByPrimaryKey(Long id);
 
-    int insert(SysRole record);
+  int insert(SysRole record);
 
-    int insertSelective(SysRole record);
+  int insertSelective(SysRole record);
 
-    SysRole selectByPrimaryKey(Long id);
+  SysRole selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(SysRole record);
+  int updateByPrimaryKeySelective(SysRole record);
 
-    int updateByPrimaryKey(SysRole record);
-    
-    List<SysRole> findPage();
+  int updateByPrimaryKey(SysRole record);
 
-	List<SysRole> findAll();
-	
-	List<SysRole> findPageByName(@Param(value="name") String name);
-	
-	List<SysRole> findByName(@Param(value="name") String name);
+  List<SysRole> findPage();
+
+  List<SysRole> findAll();
+
+  List<SysRole> findPageByName(@Param(value = "name") String name);
+
+  List<SysRole> findByName(@Param(value = "name") String name);
 }

@@ -2,16 +2,11 @@ package kuroneko.fun.system.platform.admin.model;
 
 import lombok.Data;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 @Data
 public class SysRoleMenu extends BaseModel {
 
-    private Long roleId;
+  private Long roleId;
 
-    private Long menuId;
-
-
-
+  private Long menuId;
 }

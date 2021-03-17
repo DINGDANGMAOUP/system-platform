@@ -2,18 +2,13 @@ package kuroneko.fun.system.platform.admin.model;
 
 import lombok.Data;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 @Data
 public class SysRole extends BaseModel {
 
-    private String name;
+  private String name;
 
-    private String remark;
+  private String remark;
 
-    private Byte delFlag;
-
-
-
+  private Byte delFlag;
 }

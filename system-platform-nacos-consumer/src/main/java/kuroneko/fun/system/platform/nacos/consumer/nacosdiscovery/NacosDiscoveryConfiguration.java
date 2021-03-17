@@ -19,11 +19,7 @@ package kuroneko.fun.system.platform.nacos.consumer.nacosdiscovery;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
 
-
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 @EnableDiscoveryClient
 @Configuration
-public class NacosDiscoveryConfiguration {
-}
+public class NacosDiscoveryConfiguration {}

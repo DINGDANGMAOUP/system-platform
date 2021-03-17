@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kuroneko.fun.system.platform.admin.mapper.SysUserRoleMapper">
-  <resultMap id="BaseResultMap" type="kuroneko.fun.system.platform.admin.model.SysUserRole">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="role_id" jdbcType="BIGINT" property="roleId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, user_id, role_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete
     from sys_user_role
     where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sys_user_role
-    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByUserId" parameterType="java.lang.Long">
+    delete
+    from sys_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="kuroneko.fun.system.platform.admin.model.SysUserRole">
-    insert into sys_user_role (id, user_id, role_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
-      )
+    insert into sys_user_role (id, user_id, role_id)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="kuroneko.fun.system.platform.admin.model.SysUserRole">
     insert into sys_user_role
@@ -50,7 +41,29 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="kuroneko.fun.system.platform.admin.model.SysUserRole">
+  <resultMap id="BaseResultMap" type="kuroneko.fun.system.platform.admin.model.SysUserRole">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    <result column="role_id" jdbcType="BIGINT" property="roleId"/>
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="findUserRoles" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <sql id="Base_Column_List">
+    id
+    , user_id, role_id
+  </sql>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="kuroneko.fun.system.platform.admin.model.SysUserRole">
     update sys_user_role
     <set>
       <if test="userId != null">
@@ -62,20 +75,11 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="kuroneko.fun.system.platform.admin.model.SysUserRole">
+  <update id="updateByPrimaryKey"
+    parameterType="kuroneko.fun.system.platform.admin.model.SysUserRole">
     update sys_user_role
     set user_id = #{userId,jdbcType=BIGINT},
-      role_id = #{roleId,jdbcType=BIGINT}
+        role_id = #{roleId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="findUserRoles" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user_role
-    where user_id = #{userId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByUserId" parameterType="java.lang.Long">
-    delete from sys_user_role
-    where user_id = #{userId,jdbcType=BIGINT}
-  </delete>
 </mapper>

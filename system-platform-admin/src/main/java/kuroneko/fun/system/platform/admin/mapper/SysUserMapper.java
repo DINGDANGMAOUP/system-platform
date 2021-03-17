@@ -4,27 +4,26 @@ import java.util.List;
 import kuroneko.fun.system.platform.admin.model.SysUser;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public interface SysUserMapper {
-    int deleteByPrimaryKey(Long id);
+  int deleteByPrimaryKey(Long id);
 
-    int insert(SysUser record);
+  int insert(SysUser record);
 
-    int insertSelective(SysUser record);
+  int insertSelective(SysUser record);
 
-    SysUser selectByPrimaryKey(Long id);
+  SysUser selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(SysUser record);
+  int updateByPrimaryKeySelective(SysUser record);
 
-    int updateByPrimaryKey(SysUser record);
-    
-    List<SysUser> findPage();
-    
-    SysUser findByName(@Param(value="name") String name);
-    
-	List<SysUser> findPageByName(@Param(value="name") String name);
-	
-	List<SysUser> findPageByNameAndEmail(@Param(value="name") String name, @Param(value="email") String email);
+  int updateByPrimaryKey(SysUser record);
+
+  List<SysUser> findPage();
+
+  SysUser findByName(@Param(value = "name") String name);
+
+  List<SysUser> findPageByName(@Param(value = "name") String name);
+
+  List<SysUser> findPageByNameAndEmail(
+      @Param(value = "name") String name, @Param(value = "email") String email);
 }

@@ -1,9 +1,7 @@
 package kuroneko.fun.system.platform.nacos.producer.service;
 
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 public interface HelloService {
 
-   String hello1();
+  String hello1();
 }

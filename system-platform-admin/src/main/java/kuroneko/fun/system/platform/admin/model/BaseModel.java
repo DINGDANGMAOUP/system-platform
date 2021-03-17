@@ -3,22 +3,17 @@ package kuroneko.fun.system.platform.admin.model;
 import java.util.Date;
 import lombok.Data;
 
-
-/**
- * @author kuroneko
- */
+/** @author kuroneko */
 @Data
 public class BaseModel {
 
-	private Long id;
-	
-    private String createBy;
+  private Long id;
 
-    private Date createTime;
+  private String createBy;
 
-    private String lastUpdateBy;
+  private Date createTime;
 
-    private Date lastUpdateTime;
+  private String lastUpdateBy;
 
-
+  private Date lastUpdateTime;
 }

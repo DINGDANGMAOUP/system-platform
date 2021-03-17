@@ -1,42 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kuroneko.fun.system.platform.admin.mapper.SysLogMapper">
-  <resultMap id="BaseResultMap" type="kuroneko.fun.system.platform.admin.model.SysLog">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="operation" jdbcType="VARCHAR" property="operation" />
-    <result column="method" jdbcType="VARCHAR" property="method" />
-    <result column="params" jdbcType="VARCHAR" property="params" />
-    <result column="time" jdbcType="BIGINT" property="time" />
-    <result column="ip" jdbcType="VARCHAR" property="ip" />
-    <result column="create_by" jdbcType="BIGINT" property="createBy" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
-    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, user_name, operation, method, params, time, ip, create_by, create_time, last_update_by, 
-    last_update_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_log
-    where id = #{id,jdbcType=BIGINT}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sys_log
+    delete
+    from sys_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="kuroneko.fun.system.platform.admin.model.SysLog">
-    insert into sys_log (id, user_name, operation, 
-      method, params, time, 
-      ip, create_by, create_time, 
-      last_update_by, last_update_time)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, 
-      #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT}, 
-      #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+    insert into sys_log (id, user_name, operation,
+                         method, params, time,
+                         ip, create_by, create_time,
+                         last_update_by, last_update_time)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR},
+            #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT},
+            #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+            #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="kuroneko.fun.system.platform.admin.model.SysLog">
     insert into sys_log
@@ -111,7 +90,44 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="kuroneko.fun.system.platform.admin.model.SysLog">
+  <resultMap id="BaseResultMap" type="kuroneko.fun.system.platform.admin.model.SysLog">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+    <result column="operation" jdbcType="VARCHAR" property="operation"/>
+    <result column="method" jdbcType="VARCHAR" property="method"/>
+    <result column="params" jdbcType="VARCHAR" property="params"/>
+    <result column="time" jdbcType="BIGINT" property="time"/>
+    <result column="ip" jdbcType="VARCHAR" property="ip"/>
+    <result column="create_by" jdbcType="BIGINT" property="createBy"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy"/>
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_log
+  </select>
+  <select id="findPageByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.userName + '%'"/>
+    select
+    <include refid="Base_Column_List"/>
+    from sys_log
+    where user_name like #{pattern}
+  </select>
+  <sql id="Base_Column_List">
+    id
+    , user_name, operation, method, params, time, ip, create_by, create_time, last_update_by,
+    last_update_time
+  </sql>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="kuroneko.fun.system.platform.admin.model.SysLog">
     update sys_log
     <set>
       <if test="userName != null">
@@ -149,28 +165,16 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="kuroneko.fun.system.platform.admin.model.SysLog">
     update sys_log
-    set user_name = #{userName,jdbcType=VARCHAR},
-      operation = #{operation,jdbcType=VARCHAR},
-      method = #{method,jdbcType=VARCHAR},
-      params = #{params,jdbcType=VARCHAR},
-      time = #{time,jdbcType=BIGINT},
-      ip = #{ip,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    set user_name        = #{userName,jdbcType=VARCHAR},
+        operation        = #{operation,jdbcType=VARCHAR},
+        method           = #{method,jdbcType=VARCHAR},
+        params           = #{params,jdbcType=VARCHAR},
+        time             = #{time,jdbcType=BIGINT},
+        ip               = #{ip,jdbcType=VARCHAR},
+        create_by        = #{createBy,jdbcType=BIGINT},
+        create_time      = #{createTime,jdbcType=TIMESTAMP},
+        last_update_by   = #{lastUpdateBy,jdbcType=BIGINT},
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="findPage" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_log
-  </select>
-  <select id="findPageByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="pattern" value="'%' + _parameter.userName + '%'" />
-    select 
-    <include refid="Base_Column_List" />
-    from sys_log
-    where user_name like #{pattern}
-  </select>
 </mapper>
