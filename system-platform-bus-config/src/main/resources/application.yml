@@ -21,10 +21,10 @@ spring:
             discovery:
                 service-name: ${spring.application.name}
         config:
-            label: consul  # git仓库分支
+            label: master  # git仓库分支
             server:
                 git:
-                    uri: https://github.com/DINGDANGMAOUP/system-platform.git  # 配置git仓库的地址
+                    uri: https://gitee.com/BigKuroneko/config-repo.git  # 配置git仓库的地址
                     search-paths: config-repo  # git仓库地址下的相对地址，可以配置多个，用,分割。
     zipkin:
         base-url: http://117.24.14.69:9411/

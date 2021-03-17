@@ -31,7 +31,6 @@ public class MyFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        return null;
 //        // filter需要执行的具体操作
 //        RequestContext ctx = RequestContext.getCurrentContext();
 //        HttpServletRequest request = ctx.getRequest();
@@ -49,6 +48,6 @@ public class MyFilter extends ZuulFilter {
 //            return null;
 //        }
 //        log.info("ok");
-//        return null;
+        return null;
     }
 }

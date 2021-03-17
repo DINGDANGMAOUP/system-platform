@@ -11,7 +11,7 @@ class SpringConfigController {
     @Value("${consumer.hello}")
     private String hello;
 
-    @RequestMapping("/hello")
+    @RequestMapping("bus/hello")
     public String from() {
         return this.hello;
     }
