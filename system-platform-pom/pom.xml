@@ -27,17 +27,12 @@
     <module>../system-platform-backup</module>
     <module>../system-platform-bus-config</module>
     <!--    consul-->
-    <module>../system-platform-consul-monitor</module>
-    <module>../system-platform-conusl-consumer</module>
-    <module>../system-platform-consul-producer-one</module>
-    <module>../system-platform-consul-producer-two</module>
+    <module>../system-platform-monitor</module>
+    <module>../system-platform-consumer</module>
+    <module>../system-platform-producer-one</module>
+    <module>../system-platform-producer-two</module>
     <module>../system-platform-hystrix</module>
     <module>../system-platform-zuul</module>
-    <!--    nacos-->
-    <module>../system-platform-monitor</module>
-    <module>../system-platform-nacos-consumer</module>
-    <module>../system-platform-nacos-producer-one</module>
-    <module>../system-platform-nacos-producer-two</module>
   </modules>
   <name>system-platform-pom</name>
 

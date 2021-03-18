@@ -2,7 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>system-platform-monitor</artifactId>
+  <artifactId>system-platform-consumer</artifactId>
   <build>
     <plugins>
       <plugin>
@@ -19,7 +19,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
           <mainClass>
-            kuroneko.fun.system.platform.monitor.SystemPlatformMonitorApplication
+            kuroneko.fun.system.platform.consumer.SystemPlatformConsumerApplication
           </mainClass>
         </configuration>
         <executions>
@@ -54,6 +54,21 @@
     </plugins>
   </build>
   <dependencies>
+    <!-- spring-cloud-config -->
+    <dependency>
+      <artifactId>spring-cloud-starter-config</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-cloud-starter-zipkin</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
     <dependency>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <groupId>org.springframework.boot</groupId>
@@ -62,14 +77,10 @@
       <artifactId>spring-boot-starter-web</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
-    <dependency>
-      <artifactId>spring-boot-admin-starter-server</artifactId>
-      <groupId>de.codecentric</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-boot-starter-security</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
+    <!--        <dependency>-->
+    <!--            <groupId>de.codecentric</groupId>-->
+    <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
+    <!--        </dependency>-->
     <dependency>
       <artifactId>spring-cloud-starter-consul-config</artifactId>
       <groupId>org.springframework.cloud</groupId>
@@ -82,15 +93,30 @@
       <artifactId>spring-cloud-starter-openfeign</artifactId>
       <groupId>org.springframework.cloud</groupId>
     </dependency>
+
     <dependency>
-      <artifactId>lombok</artifactId>
-      <groupId>org.projectlombok</groupId>
-      <optional>true</optional>
+      <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+          <groupId>org.springframework.cloud</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.springframework.cloud</groupId>
     </dependency>
 
     <dependency>
       <artifactId>spring-boot-configuration-processor</artifactId>
       <groupId>org.springframework.boot</groupId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -130,15 +156,15 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <description>基于consul的系统监控</description>
+  <description>消费者 conusl-consumer</description>
   <groupId>kuroneko.fun</groupId>
 
   <modelVersion>4.0.0</modelVersion>
 
-  <name>system-platform-monitor</name>
+  <name>system-platform-consumer</name>
 
   <properties>
-    <docker.image.prefix>system-platform-monitor</docker.image.prefix>
+    <docker.image.prefix>system-platform-consumer</docker.image.prefix>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
