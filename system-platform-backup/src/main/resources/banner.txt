@@ -5,4 +5,4 @@
 |    <|  |  /|  | \(  <_> )   |  \  ___/|    <  <_> )
 |__|_ \____/ |__|   \____/|___|  /\___  >__|_ \____/
      \/                        \/     \/     \/
-===  kuroneko-backup Application == version v1.0.0 ==
+===  kuroneko-${name} Application == version v${version}  ==
