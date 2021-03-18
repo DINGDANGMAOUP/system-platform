@@ -43,3 +43,12 @@ build/
 /system-platform-common/.mvn/
 /system-platform-conusl-consumer/.mvn/
 /system-platform-core/.mvn/
+/system-platform-monitor/.gitignore
+/system-platform-monitor/mvnw
+/system-platform-monitor/mvnw.cmd
+/system-platform-producer-two/.gitignore
+/system-platform-producer-two/mvnw
+/system-platform-producer-two/mvnw.cmd
+/system-platform-producer-one/.gitignore
+/system-platform-producer-one/mvnw
+/system-platform-producer-one/mvnw.cmd
