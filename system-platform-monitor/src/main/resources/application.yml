@@ -30,4 +30,7 @@ spring:
     user:
       name: admin
       password: admin
-
+#      自定义同时钉钉自定义机器人 webhook
+notify:
+  dingtalk:
+      webhook: https://oapi.dingtalk.com/robot/send?access_token=aa9050cab34edc994b1463d13b4a56cd97257eed469277aebe42f9a73184d55e

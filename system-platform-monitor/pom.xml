@@ -54,6 +54,7 @@
     </plugins>
   </build>
   <dependencies>
+
     <dependency>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <groupId>org.springframework.boot</groupId>
